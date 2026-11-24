@@ -1,0 +1,230 @@
+
+
+% plotAllOrbits()
+plotPeriod(23)
+
+
+
+function plotPeriod(period)
+    load("../data/orbit_data.mat", "Orbits")    
+    start = 26;
+    
+
+    % plot box
+    p = 1;
+    a = 0.6;
+    line_width = 2;
+    figure
+
+    pt_size = 50;
+
+    plot3(p, p, p, 'marker', '.', 'MarkerSize', pt_size, 'color', 'black')
+    hold on
+    plot3(-p, -p, -p, 'marker', '.', 'MarkerSize', pt_size, 'color', 'black')
+    
+    plot3(-p, p, p, 'marker', '.', 'MarkerSize', pt_size, 'color', [0 0.8 1])
+    plot3(p, -p, p, 'marker', '.', 'MarkerSize', pt_size, 'color', [0 0.8 1])
+    plot3(p, p, -p, 'marker', '.', 'MarkerSize', pt_size, 'color', [0 0.8 1])
+    plot3(-p, -p, p, 'marker', '.', 'MarkerSize', pt_size, 'color', [1 0.8 0])
+    plot3(p, -p, -p, 'marker', '.', 'MarkerSize', pt_size, 'color', [1 0.8 0])
+    plot3(-p, p, -p, 'marker', '.', 'MarkerSize', pt_size, 'color', [1 0.8 0])
+
+    plot3([p -p], [p p], [p p], 'color', a*[1 1 1], 'LineWidth', line_width)
+    plot3([-p -p], [p -p], [p p], 'color', a*[1 1 1], 'LineWidth', line_width)
+    plot3([-p p], [-p -p], [p p], 'color', a*[1 1 1], 'LineWidth', line_width)
+    plot3([p p], [-p p], [p p], 'color', a*[1 1 1], 'LineWidth', line_width)
+
+    plot3([p -p], [p p], [-p -p], 'color', a*[1 1 1], 'LineWidth', line_width)
+    plot3([-p -p], [p -p], [-p -p], 'color', a*[1 1 1], 'LineWidth', line_width)
+    plot3([-p p], [-p -p], [-p -p], 'color', a*[1 1 1], 'LineWidth', line_width)
+    plot3([p p], [-p p], [-p -p], 'color', a*[1 1 1], 'LineWidth', line_width)
+
+    plot3([p p], [p p], [p -p], 'color', a*[1 1 1], 'LineWidth', line_width)
+    plot3([p p], [-p -p], [p -p], 'color', a*[1 1 1], 'LineWidth', line_width)
+    plot3([-p -p], [p p], [p -p], 'color', a*[1 1 1], 'LineWidth', line_width)
+    plot3([-p -p], [-p -p], [p -p], 'color', a*[1 1 1], 'LineWidth', line_width)
+
+    
+
+    hold on
+    C = myColourMap();
+    colormap(C)
+    colorbar('Ticks', 5:start, 'TickLabels', {5, "", "", 8,"","",11,"","",14,"","",17,"", "", 20, "", "", 23, "", "", 26}, 'TickLabelInterpreter', 'latex', 'TickLength', 0.05, 'LineWidth', 2, 'Position', [0.82 0.185 0.03 0.625])
+
+    pt_size = 3;
+    orbits = Orbits{period};
+    points = [];
+    for i = 1:size(orbits, 2)
+        points = [points orbits(i).points];
+    end
+    scatter3(points(1, :), points(2, :), points(3, :), pt_size, [0.25 0.75 0], 'marker', '.'); % small size
+    
+    set(gcf,'color','w');
+    set(gca,'linewidth',1);
+
+    tick = 1;
+    xticks([-tick 0 tick])
+    yticks([-tick 0 tick])
+    zticks([-tick 0 tick])
+
+    lim = 1.55;
+    xlim([-lim lim])
+    ylim([-lim lim])
+    zlim([-lim lim])
+
+    set(gca,'TickLabelInterpreter','latex')
+    ax = gca;
+    font_size = 25;
+    ax.FontSize = font_size;
+
+    ax.XAxis.Visible = 'off';
+    ax.YAxis.Visible = 'off';
+    ax.ZAxis.Visible = 'off';
+    
+
+    view(33.0289, 8.3685)
+
+    x0 = 500;
+    y0 = 200;
+    width = 1200;
+    height = 1200;
+    set(gcf,'position',[x0,y0,width,height])
+
+
+    pbaspect([1 1 1])
+    grid off
+end
+
+
+function plotAllOrbits()
+    
+    load("../data/orbit_data.mat", "Orbits")    
+    start = 26;
+    
+
+    % plot box
+    p = 1;
+    a = 0.6;
+    line_width = 2;
+    figure
+
+    pt_size = 50;
+
+    plot3(p, p, p, 'marker', '.', 'MarkerSize', pt_size, 'color', 'black')
+    hold on
+    plot3(-p, -p, -p, 'marker', '.', 'MarkerSize', pt_size, 'color', 'black')
+    
+    plot3(-p, p, p, 'marker', '.', 'MarkerSize', pt_size, 'color', [0 0.8 1])
+    plot3(p, -p, p, 'marker', '.', 'MarkerSize', pt_size, 'color', [0 0.8 1])
+    plot3(p, p, -p, 'marker', '.', 'MarkerSize', pt_size, 'color', [0 0.8 1])
+    plot3(-p, -p, p, 'marker', '.', 'MarkerSize', pt_size, 'color', [1 0.8 0])
+    plot3(p, -p, -p, 'marker', '.', 'MarkerSize', pt_size, 'color', [1 0.8 0])
+    plot3(-p, p, -p, 'marker', '.', 'MarkerSize', pt_size, 'color', [1 0.8 0])
+
+    plot3([p -p], [p p], [p p], 'color', a*[1 1 1], 'LineWidth', line_width)
+    plot3([-p -p], [p -p], [p p], 'color', a*[1 1 1], 'LineWidth', line_width)
+    plot3([-p p], [-p -p], [p p], 'color', a*[1 1 1], 'LineWidth', line_width)
+    plot3([p p], [-p p], [p p], 'color', a*[1 1 1], 'LineWidth', line_width)
+
+    plot3([p -p], [p p], [-p -p], 'color', a*[1 1 1], 'LineWidth', line_width)
+    plot3([-p -p], [p -p], [-p -p], 'color', a*[1 1 1], 'LineWidth', line_width)
+    plot3([-p p], [-p -p], [-p -p], 'color', a*[1 1 1], 'LineWidth', line_width)
+    plot3([p p], [-p p], [-p -p], 'color', a*[1 1 1], 'LineWidth', line_width)
+
+    plot3([p p], [p p], [p -p], 'color', a*[1 1 1], 'LineWidth', line_width)
+    plot3([p p], [-p -p], [p -p], 'color', a*[1 1 1], 'LineWidth', line_width)
+    plot3([-p -p], [p p], [p -p], 'color', a*[1 1 1], 'LineWidth', line_width)
+    plot3([-p -p], [-p -p], [p -p], 'color', a*[1 1 1], 'LineWidth', line_width)
+
+    
+
+    hold on
+    C = myColourMap();
+    colormap(C)
+    colorbar('Ticks', 5:start, 'TickLabels', {5, "", "", 8,"","",11,"","",14,"","",17,"", "", 20, "", "", 23, "", "", 26}, 'TickLabelInterpreter', 'latex', 'TickLength', 0.05, 'LineWidth', 2, 'Position', [0.82 0.185 0.03 0.625])
+
+    split1 = 15;
+    small_size = 3; % 1
+    big_size = 300; % 300
+    for period = start:-1:split1
+        orbits = Orbits{period};
+        points = [];
+        for i = 1:size(orbits, 2)
+            points = [points orbits(i).points];
+        end
+
+        scatter3(points(1, :), points(2, :), points(3, :), small_size, repmat(period, max(size(points)), 1), 'marker', '.'); % small size
+    end
+
+
+    for period = split1-1:-1:5
+        orbits = Orbits{period};
+        points = [];
+        for i = 1:size(orbits, 2)
+            points = [points orbits(i).points];
+        end
+        scatter3(points(1, :), points(2, :), points(3, :), big_size, repmat(period, max(size(points)), 1), 'marker', '.');
+
+    end
+
+    set(gcf,'color','w');
+    set(gca,'linewidth',1);
+
+    tick = 1;
+    xticks([-tick 0 tick])
+    yticks([-tick 0 tick])
+    zticks([-tick 0 tick])
+
+    lim = 1.55;
+    xlim([-lim lim])
+    ylim([-lim lim])
+    zlim([-lim lim])
+
+    set(gca,'TickLabelInterpreter','latex')
+    ax = gca;
+    font_size = 25;
+    ax.FontSize = font_size;
+
+    ax.XAxis.Visible = 'off';
+    ax.YAxis.Visible = 'off';
+    ax.ZAxis.Visible = 'off';
+    
+
+    view(33.0289, 8.3685)
+
+    x0 = 500;
+    y0 = 200;
+    width = 1200;
+    height = 1200;
+    set(gcf,'position',[x0,y0,width,height])
+
+
+    pbaspect([1 1 1])
+    grid off
+end
+
+
+function C = myColourMap()
+    C = [162,19,250;
+    142,30,246;
+    121,42,242;
+    101,54,238;
+    81,66,234;
+    60,77,230;
+    56,89,223;
+    51,101,217;
+    47,113,210;
+    42,124,203;
+    38,136,196;
+    44,148,182;
+    51,160,168;
+    57,172,154;
+    63,184,139;
+    70,195,125;
+    80,208,102;
+    91,220,79;
+    101,232,57;
+    112,244,34;
+    122,255,11] / 255;
+end
+
