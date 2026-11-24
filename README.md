@@ -10,15 +10,15 @@ $$
 T(x,y,z) = \left(z+k(x^2+y^2-2),\ x,\ y\right),
 $$
 
-where \(k = \sqrt{20}\).
+where $k = \sqrt{20}$.
 
 A periodic orbit is a finite sequence of points that returns to its starting point under repeated application of the map. More precisely, a point \(\mathbf{x}\) is periodic with period \(n\) if
 
-\[
+$$
 T^n(\mathbf{x}) = \mathbf{x},
-\]
+$$
 
-where \(T^n\) denotes \(n\) successive applications of \(T\). The smallest such positive integer \(n\) is called the *minimal period*.
+where $T^n$ denotes $n$ successive applications of $T$. The smallest such positive integer $n$ is called the *minimal period*.
 
 Finding periodic orbits numerically can be challenging, particularly for higher periods, where conventional approaches based on Newton's method require increasingly accurate initial guesses.
 
@@ -49,9 +49,9 @@ The numerical method significantly reduces the computational effort required to 
 
 In comparison, the method implemented here finds 1,364 period-11 points in 0.0945 seconds on a desktop computer.
 
-The following table summarises the computational results for periods \(5 \leq n \leq 26\).
+The following table summarises the computational results for periods $5 \leq n \leq 26$.
 
-| Period \(n\) | Periodic points | Periodic orbits | Computation time (s) |
+| Period $n$ | Periodic points | Periodic orbits | Computation time (s) |
 |:---:|---:|---:|---:|
 | 5 | 30 | 6 | 0.0939 |
 | 6 | 24 | 4 | 0.0923 |
@@ -107,6 +107,12 @@ periodic-orbit-computation/
 4. Run the main Julia script. Computation time depends on the range of periods and your machine's specifications; a full run may take up to approximately 30 minutes.
 
 The script computes periodic orbits over a specified range of periods, saves the results, and invokes MATLAB for post-processing and visualisation.
+
+## TODO
+
+- [ ] Improve portability of the MATLAB integration by removing the hard-coded executable path.
+- [ ] Initialise MATLAB output files automatically when running from a fresh clone.
+- [ ] Add Julia dependency management using `Project.toml`.
 
 ## Research Background
 
