@@ -6,9 +6,9 @@ A numerical implementation for finding periodic orbits in a discrete dynamical s
 
 This project implements a numerical method for finding periodic orbits of the three-dimensional discrete dynamical system
 
-\[
+$$
 T(x,y,z) = \left(z+k(x^2+y^2-2),\ x,\ y\right),
-\]
+$$
 
 where \(k = \sqrt{20}\).
 
